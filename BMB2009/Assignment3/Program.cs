@@ -62,7 +62,7 @@ public static class Extensions
                     0 => $"{(bin == 1 && dig == 1 && peek + dpk == 0 ? "" : BasBir[dig])} {txt}"
                         .Trim(),
                     1 => $"{BasOn[dig]} {txt}".Trim(),
-                    _ => dig is 0 ? txt : $"{(dig is 1 || peek is 1 ? "yüz" : BasBir[dig] + " yüz")} {txt}"
+                    _ => dig is 0 ? txt : $"{(dig is 1 ? "yüz" : BasBir[dig] + " yüz")} {txt}"
                 };
                 dgr /= 10;
                 pos++;
