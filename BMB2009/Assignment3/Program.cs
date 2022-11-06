@@ -1,6 +1,8 @@
 ﻿/*
  *      Ferit Yiğit BALABAN, <f@fybx.dev>
  *      032190002
+ *
+ *      Goal: Write name of any entered number between 1 to 2147483647 (inclusive).
  */
 // ReSharper disable All
 namespace Assignment3;
@@ -9,9 +11,18 @@ public static class Assignment3
 {
     private static void Main(string[] args)
     {
-        Console.Write("Bir sayı girin: ");
-        int sayi = Convert.ToInt32(Console.ReadLine());
-        Console.WriteLine(sayi.Oku());
+        bool @break = false;
+        while (!@break)
+        {
+            Console.Write("Bir sayı girin: ");
+            string? input = Console.ReadLine();
+            @break = string.IsNullOrEmpty(input?.Replace(" ", ""));
+            if (!@break)
+            {
+                int sayi = Convert.ToInt32(input);
+                Console.WriteLine(sayi.Oku());   
+            }
+        }
     }
 }
 
