@@ -1,3 +1,15 @@
-﻿// See https://aka.ms/new-console-template for more information
+﻿/*
+ *      Ferit Yiğit BALABAN, <f@fybx.dev>
+ */
 
-Console.WriteLine("Hello, World!");
+using System;
+
+namespace Assignment3;
+
+public static class Assignment3
+{
+    public static void Main(string[] args)
+    {
+        Console.WriteLine("Hello, world!");
+    }
+}
