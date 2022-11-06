@@ -30,12 +30,12 @@ public static class Extensions
 {
     private static Dictionary<int, string> BasBir = new()
     {
-        {1, "bir"}, {2, "iki"}, {3, "üç"}, {4, "dört"}, {5, "beş"}, {6, "altı"}, {7, "yedi"}, {8, "sekiz"}, {9, "dokuz"}
+        {0, ""}, {1, "bir"}, {2, "iki"}, {3, "üç"}, {4, "dört"}, {5, "beş"}, {6, "altı"}, {7, "yedi"}, {8, "sekiz"}, {9, "dokuz"}
     };
     
     private static Dictionary<int, string> BasOn = new()
     {
-        {1, "on"}, {2, "yirmi"}, {3, "otuz"}, {4, "kırk"}, {5, "elli"}, {6, "altmış"}, {7, "yetmiş"}, {8, "seksen"}, {9, "doksan"}
+        {0, ""}, {1, "on"}, {2, "yirmi"}, {3, "otuz"}, {4, "kırk"}, {5, "elli"}, {6, "altmış"}, {7, "yetmiş"}, {8, "seksen"}, {9, "doksan"}
     };
 
     private static Dictionary<int, string> Binlik = new()
@@ -45,21 +45,24 @@ public static class Extensions
 
     public static string Oku(this int deger)
     {
-        int bin = 0, dig = 0, peek = 0, dgr = deger;
+        int bin = 0, dig = 0, peek = 0, dpk = 0, tpk = 0, dgr = deger;
         string txt = "";
         do
         {
             int pos = 0;
-            txt = bin == 0 ? "" : $"{(Binlik[bin])} {txt.Trim()}";
+            txt = bin == 0 || peek + tpk == 0 ? txt : $"{(Binlik[bin])} {txt.Trim()}";
             do
             {
                 dig = dgr % 10;
                 peek = (dgr / 10) % 10;
+                dpk = (dgr / 100) % 10;
+                tpk = (dgr / 1000) % 10;
                 txt = pos switch
                 {
-                    0 => $"{(bin == 1 && pos == 1 && peek == 0 ? "" : BasBir[dig])} {txt}".Trim(),
-                    1 => $"{BasOn[dig]} {txt}",
-                    _ => $"{(dig == 1 ? "" : BasBir[dig])} yüz {txt}"
+                    0 => $"{(bin == 1 && dig == 1 && peek + dpk == 0 ? "" : BasBir[dig])} {txt}"
+                        .Trim(),
+                    1 => $"{BasOn[dig]} {txt}".Trim(),
+                    _ => dig is 0 ? txt : $"{(dig is 1 || peek is 1 ? "yüz" : BasBir[dig] + " yüz")} {txt}"
                 };
                 dgr /= 10;
                 pos++;
