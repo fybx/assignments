@@ -50,7 +50,7 @@ public static class Extensions
         do
         {
             int pos = 0;
-            txt = bin == 0 || peek + tpk == 0 ? txt : $"{(Binlik[bin])} {txt.Trim()}";
+            txt = bin == 0 || peek + dpk + tpk == 0 ? txt : $"{(Binlik[bin])} {txt.Trim()}";
             do
             {
                 dig = dgr % 10;
