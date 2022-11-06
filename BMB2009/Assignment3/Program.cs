@@ -2,6 +2,7 @@
  *      Ferit Yiğit BALABAN, <f@fybx.dev>
  *      032190002
  */
+// ReSharper disable All
 namespace Assignment3;
 
 public static class Assignment3
@@ -28,8 +29,7 @@ public static class Extensions
 
     private static Dictionary<int, string> UcluGrup = new()
     {
-        { 0, "" }, { 1, "bin" }, { 2, "milyon" }, { 3, "milyar" }, { 4, "trilyon" }, { 5, "katrilyon" },
-        { 6, "kentilyon" }, { 7, "sekstilyon" }, { 8, "septilyon" }, { 9, "oktilyon" }
+        { 0, "" }, { 1, "bin" }, { 2, "milyon" }, { 3, "milyar" }
     };
 
     public static string Oku(this int deger)
@@ -40,12 +40,13 @@ public static class Extensions
         do
         {
             int pos = 0;
+            metin = $"{(UcluGrup[ucl])} {metin.Trim()}";
             do
             {
                 rakam = deger % 10;
                 metin = pos switch
                 {
-                    0 => $"{BasBirler[rakam]} {metin}",
+                    0 => $"{(ucl == 1 && rakam == 1 && ((deger / 10) % 10) == 0 ? string.Empty : BasBirler[rakam])} {metin}".Trim(),
                     1 => $"{BasOnlar[rakam]} {metin}",
                     _ => $"{(rakam == 1 ? string.Empty : BasBirler[rakam])} yüz {metin}"
                 };
@@ -54,9 +55,8 @@ public static class Extensions
             } while (pos < 3 && deger != 0);
             
             ucl++;
-            metin = $"{(rakam == 1 ? string.Empty : UcluGrup[ucl])} {metin}";
         } while (deger != 0);
-        
-        return metin.Trim();
+
+        return metin.TrimStart();
     }
 }
