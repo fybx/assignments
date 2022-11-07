@@ -17,7 +17,7 @@ public static class Assignment2_1
             }
         }
     }
-
+    
     public static void DispCrown(int n)
     {
         int row = 1, j;
@@ -39,6 +39,19 @@ public static class Assignment2_1
         }
     }
 
+    public static bool IsArmstrong(int val)
+    {
+        int n = val, digit, sum = 0;
+        do
+        {
+            digit = n % 10;
+            sum += digit * digit * digit;
+            n /= 10;
+        } while (n != 0);
+
+        return val == sum;
+    }
+    
     /// <summary>
     /// Used to prototype actual DispCrown that is wanted by the instructor.
     /// </summary>
