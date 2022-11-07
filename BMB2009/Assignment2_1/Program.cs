@@ -1,4 +1,9 @@
-﻿// ReSharper disable All
+﻿/*
+ *      Ferit Yiğit BALABAN, <f@fybx.dev>
+ *      032190002
+ */
+
+// ReSharper disable All
 namespace Assignment2_1;
 
 // ReSharper disable once InconsistentNaming
@@ -6,16 +11,41 @@ public static class Assignment2_1
 {
     public static void Main(string[] args)
     {
-        string? input;
+        // 1) DispCrown
+        // string? input;
+        // while (true)
+        // {
+        //     Console.WriteLine("n gir: ");
+        //     input = Console.ReadLine();
+        //     if (Convert.ToInt32(input) > 1)
+        //     {
+        //         DispCrown(Convert.ToInt32(input));
+        //     }
+        // }
+        
+        // 2) IsArmstrong
+        int n;
         while (true)
         {
-            Console.WriteLine("n gir: ");
-            input = Console.ReadLine();
-            if (Convert.ToInt32(input) > 1)
-            {
-                DispCrown(Convert.ToInt32(input));
-            }
+            Console.Write("n gir: ");
+            n = Convert.ToInt32(Console.ReadLine()?.Trim());
+            if (n is 0)
+                break;
+            Console.WriteLine("{0} {1}", n, IsArmstrong(n) ? "Armstrong sayısıdır." : "Armstrong sayısı değildir.");
         }
+    }
+    
+    public static bool IsArmstrong(int val)
+    {
+        int n = val, digit, sum = 0;
+        do
+        {
+            digit = n % 10;
+            sum += digit * digit * digit;
+            n /= 10;
+        } while (n != 0);
+
+        return val == sum;
     }
     
     public static void DispCrown(int n)
@@ -39,19 +69,6 @@ public static class Assignment2_1
         }
     }
 
-    public static bool IsArmstrong(int val)
-    {
-        int n = val, digit, sum = 0;
-        do
-        {
-            digit = n % 10;
-            sum += digit * digit * digit;
-            n /= 10;
-        } while (n != 0);
-
-        return val == sum;
-    }
-    
     /// <summary>
     /// Used to prototype actual DispCrown that is wanted by the instructor.
     /// </summary>
