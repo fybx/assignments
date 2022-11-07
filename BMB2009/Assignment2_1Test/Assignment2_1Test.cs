@@ -17,4 +17,15 @@ public class Tests
         Assert.AreEqual("1    1    1\n12  212  21\n12332123321", _DispCrown(3));
         Assert.AreEqual("1      1      1\n12    212    21\n123  32123  321\n123443212344321", _DispCrown(4));
     }
+
+    [Test]
+    public void TestIsArmstrong()
+    {
+        Assert.AreEqual(true, IsArmstrong(0));
+        Assert.AreEqual(true, IsArmstrong(1));
+        Assert.AreEqual(true, IsArmstrong(153));
+        Assert.AreEqual(true, IsArmstrong(370));
+        Assert.AreEqual(true, IsArmstrong(371));
+        Assert.AreEqual(true, IsArmstrong(407));
+    }
 }
