@@ -22,17 +22,28 @@ public static class Assignment2_1
         //         DispCrown(Convert.ToInt32(input));
         //     }
         // }
-        
+                
         // 2) IsArmstrong
-        int n;
-        while (true)
-        {
-            Console.Write("n gir: ");
-            n = Convert.ToInt32(Console.ReadLine()?.Trim());
-            if (n is 0)
-                break;
-            Console.WriteLine("{0} {1}", n, IsArmstrong(n) ? "Armstrong sayısıdır." : "Armstrong sayısı değildir.");
-        }
+        // int n;
+        // while (true)
+        // {
+        //     Console.Write("n gir: ");
+        //     n = Convert.ToInt32(Console.ReadLine()?.Trim());
+        //     if (n is 0)
+        //         break;
+        //     Console.WriteLine("{0} {1}", n, IsArmstrong(n) ? "Armstrong sayısıdır." : "Armstrong sayısı değildir.");
+        // }
+                
+        // 3) DispAllArmstrong
+        Console.Write("n gir: ");
+        int n = Convert.ToInt32(Console.ReadLine()?.Trim());
+        DispAllArmstrong(n);
+    }
+
+    public static void DispAllArmstrong(int n)
+    {
+        for (int i = 1; i <= n; i++)
+            Console.Write(IsArmstrong(i) ? $"{i} Armstrong sayısıdır.\n" : "");
     }
     
     public static bool IsArmstrong(int val)
