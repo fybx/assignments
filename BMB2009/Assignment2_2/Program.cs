@@ -68,7 +68,25 @@ public static class Assignment2_2
     /// <returns>Returns updated coordinate array of body.</returns>
     private static int[,] CalculateSnakeBody(int direction)
     {
-        throw new NotImplementedException();
+        for (int i = 0; i < 4; i++)
+        {
+            snakeBody[i, 0] = snakeBody[i + 1, 0];
+            snakeBody[i, 1] = snakeBody[i + 1, 1];
+        }
+        snakeBody[4, 0] += direction switch
+        {
+            1 => -1,
+            3 => 1,
+            _ => 0
+        };
+        snakeBody[4, 1] += direction switch
+        {
+            2 => 1,
+            4 => -1,
+            _ => 0
+        };
+
+        return snakeBody;
     }
     
     /// <summary>
