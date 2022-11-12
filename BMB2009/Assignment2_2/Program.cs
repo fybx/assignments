@@ -34,13 +34,24 @@ public static class Assignment2_2
     public static void Main(string[] args)
     {
         bool gameGoesOn = true;
-
+        
         while (gameGoesOn)
         {
             // GetArrowKeypress
             // CalculateNewState
             // CheckCollision
             // Redraw
+            Redraw(0);    
+            ConsoleKeyInfo key = Console.ReadKey();
+            CalculateSnakeBody(key.Key switch
+            {
+                ConsoleKey.UpArrow => 1,
+                ConsoleKey.RightArrow => 2,
+                ConsoleKey.DownArrow => 3,
+                ConsoleKey.LeftArrow => 4,
+                ConsoleKey.Q => 5,
+                _ => 6
+            });
         }
     }
 
@@ -75,14 +86,14 @@ public static class Assignment2_2
         }
         snakeBody[4, 0] += direction switch
         {
-            1 => -1,
-            3 => 1,
+            2 => 1,
+            4 => -1,
             _ => 0
         };
         snakeBody[4, 1] += direction switch
         {
-            2 => 1,
-            4 => -1,
+            1 => -1,
+            3 => 1,
             _ => 0
         };
 
