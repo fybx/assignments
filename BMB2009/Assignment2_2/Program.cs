@@ -50,7 +50,7 @@ public static class Assignment2_2
     /// Does collision checks against console window borders and itself.
     /// </summary>
     /// <returns>Returns true if collision occurs, otherwise false.</returns>
-    private static bool CheckCollision()
+    public static bool CheckCollision()
     {
         throw new NotImplementedException();
     }
@@ -60,7 +60,7 @@ public static class Assignment2_2
     /// </summary>
     /// <param name="direction">Direction player stepped to; up being 1, right 2, down 3 and left 4.</param>
     /// <returns>Returns updated coordinate array of body.</returns>
-    private static int[,] CalculateSnakeBody(int direction)
+    public static int[,] CalculateSnakeBody(int direction)
     {
         throw new NotImplementedException();
     }
@@ -70,7 +70,7 @@ public static class Assignment2_2
     /// </summary>
     /// <param name="state">Current game state</param>
     /// <param name="draw">True by default, can be used to skip states</param>
-    private static void Redraw(int state, bool draw = true)
+    public static void Redraw(int state, bool draw = true)
     {
         if (!draw)
             return;
