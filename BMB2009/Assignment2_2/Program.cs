@@ -4,6 +4,7 @@
  */
 
 using System;
+using System.Security.Principal;
 
 namespace Assignment2_2;
 
@@ -33,7 +34,7 @@ public static class Assignment2_2
     public static void Main(string[] args)
     {
         bool gameGoesOn = true;
-        
+
         while (gameGoesOn)
         {
             // GetArrowKeypress
@@ -49,7 +50,15 @@ public static class Assignment2_2
     /// <returns>Returns true if collision occurs, otherwise false.</returns>
     private static bool CheckCollision()
     {
-        throw new NotImplementedException();
+        int headX = snakeBody[4, 0];
+        int headY = snakeBody[4, 1];
+
+        if (headX is -1 || headY is -1) return true;
+        if (headX == Console.WindowWidth + 1 || headY == Console.WindowHeight + 1) return true;
+        for (int i = 0; i < 4; i++)
+            if (snakeBody[i, 0] == headX && snakeBody[i, 1] == headY)
+                return true;
+        return false;
     }
 
     /// <summary>
@@ -76,6 +85,7 @@ public static class Assignment2_2
 
     public static bool CheckCollision(int[,] snakeBody)
     {
+        Assignment2_2.snakeBody = snakeBody;
         return CheckCollision();
     }
 
