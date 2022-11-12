@@ -52,6 +52,8 @@ public static class Assignment2_2
                 ConsoleKey.Q => 5,
                 _ => 6
             });
+            if (CheckCollision())
+                gameGoesOn = false;
         }
     }
 
