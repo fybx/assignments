@@ -32,9 +32,6 @@ public static class Assignment2_2
     
     public static void Main(string[] args)
     {
-        // Set BufferWidth and BufferHeight equal to WindowWidth and WindowHeight if they aren't already equal
-        Console.BufferWidth = Console.BufferWidth == Console.WindowWidth ? Console.BufferWidth : Console.WindowWidth;
-        Console.BufferHeight = Console.BufferHeight == Console.WindowHeight ? Console.BufferHeight : Console.WindowHeight;
         bool gameGoesOn = true;
         
         while (gameGoesOn)
