@@ -98,7 +98,13 @@ public static class Assignment2_2
     {
         if (!draw)
             return;
-        throw new NotImplementedException();
+        
+        Console.Clear();
+        for (int i = 0; i < 5; i++)
+        {
+            Console.SetCursorPosition(snakeBody[i, 0], snakeBody[i, 1]);
+            Console.Write(i is 4 ? "0" : "*");
+        }
     }
 
     public static bool CheckCollision(int[,] snakeBody)
