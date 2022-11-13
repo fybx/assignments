@@ -7,6 +7,14 @@ namespace Assignment2_2;
 // ReSharper disable once InconsistentNaming
 public static class Assignment2_2
 {
+    private static readonly int[,] InitialBody = {
+        { 38, 15 },
+        { 39, 15 },
+        { 40, 15 },
+        { 41, 15 },
+        { 42, 15 }
+    };
+    
     /// <summary>
     /// Field _gameState defines 3 states the game can take.
     /// If state = 0 game is waiting for a keypress to be started
@@ -18,14 +26,14 @@ public static class Assignment2_2
     /// <summary>
     /// Field _snakeBody gives coordinates of snake body parts with the last (4th) element being the head.
     /// </summary>
-    private static int[,] _snakeBody;
-    
+    private static int[,] _snakeBody = (int[,])InitialBody.Clone();
+
     public static void Main(string[] args)
     {
         ConsoleKeyInfo key;
         start:
-        _gameState = 1;
         Redraw(0);
+        _gameState = 1;
         while (_gameState is 1)
         {
             Redraw(_gameState, _gameState is not 0);
@@ -114,16 +122,8 @@ public static class Assignment2_2
             return;
 
         if (state is 0)
-        {
-            _snakeBody = new[,]
-            {
-                { 38, 15 },
-                { 39, 15 },
-                { 40, 15 },
-                { 41, 15 },
-                { 42, 15 }
-            };
-        } else
+            _snakeBody = (int[,])InitialBody.Clone();
+        else
             Console.Clear();
         for (int i = 0; i < 5; i++)
         {
