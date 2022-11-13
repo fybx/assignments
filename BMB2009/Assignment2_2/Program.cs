@@ -137,15 +137,4 @@ public static class Assignment2_2
             Console.Write(i is 4 ? "0" : "*");
         }
     }
-
-    public static bool CheckCollision(int[,] snakeBody)
-    {
-        Assignment2_2.snakeBody = snakeBody;
-        return CheckCollision();
-    }
-
-    public static int[,] CalculateSnakeBody(int[,] snakeBody, int direction)
-    {
-        return CalculateSnakeBody(direction);
-    }
 }
