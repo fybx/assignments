@@ -2,37 +2,33 @@
  *      Ferit Yiğit BALABAN, <f@fybx.dev>
  *      032190002
  */
-
-using System;
-using System.Security.Principal;
-
 namespace Assignment2_2;
 
 // ReSharper disable once InconsistentNaming
 public static class Assignment2_2
 {
     /// <summary>
-    /// Field gameState defines 3 states the game can take.
+    /// Field _gameState defines 3 states the game can take.
     /// If state = 0 game is waiting for a keypress to be started
     ///    bigger  0 game is started, every keypress calculates collisions then redraws scene if no collision is made
     ///    smaller 0 game is lost, ask for spesific keypress to restart, if pressed set state to 0
     /// </summary>
-    private static int gameState = 1;
+    private static int _gameState = 1;
 
     /// <summary>
-    /// Field snakeBody gives coordinates of snake body parts with the last (4th) element being the head.
+    /// Field _snakeBody gives coordinates of snake body parts with the last (4th) element being the head.
     /// </summary>
-    private static int[,] snakeBody;
+    private static int[,] _snakeBody;
     
     public static void Main(string[] args)
     {
         ConsoleKeyInfo key;
         start:
-        gameState = 1;
+        _gameState = 1;
         Redraw(0);
-        while (gameState is 1)
+        while (_gameState is 1)
         {
-            Redraw(gameState, gameState is not 0);
+            Redraw(_gameState, _gameState is not 0);
             key = Console.ReadKey();
             int decision = key.Key switch
             {
@@ -44,14 +40,14 @@ public static class Assignment2_2
                 _ => 6
             };
             if (decision is 5)
-                gameState = -2;
+                _gameState = -2;
             CalculateSnakeBody(decision);
             if (CheckCollision())
-                gameState = -1;
-            gameState = gameState > -1 ? 1 : gameState;
+                _gameState = -1;
+            _gameState = _gameState > -1 ? 1 : _gameState;
         }
         
-        if (gameState is -1)
+        if (_gameState is -1)
         {
             Console.Clear();
             Console.WriteLine("Kaybettiniz. Tekrar oynamak için \"r\", çıkmak için \"q\" tuşuna basınız...");
@@ -70,13 +66,13 @@ public static class Assignment2_2
     /// <returns>Returns true if collision occurs, otherwise false.</returns>
     private static bool CheckCollision()
     {
-        int headX = snakeBody[4, 0];
-        int headY = snakeBody[4, 1];
+        int headX = _snakeBody[4, 0];
+        int headY = _snakeBody[4, 1];
 
         if (headX is -1 || headY is -1) return true;
         if (headX == Console.WindowWidth + 1 || headY == Console.WindowHeight + 1) return true;
         for (int i = 0; i < 4; i++)
-            if (snakeBody[i, 0] == headX && snakeBody[i, 1] == headY)
+            if (_snakeBody[i, 0] == headX && _snakeBody[i, 1] == headY)
                 return true;
         return false;
     }
@@ -86,27 +82,25 @@ public static class Assignment2_2
     /// </summary>
     /// <param name="direction">Direction player stepped to; up being 1, right 2, down 3 and left 4.</param>
     /// <returns>Returns updated coordinate array of body.</returns>
-    private static int[,] CalculateSnakeBody(int direction)
+    private static void CalculateSnakeBody(int direction)
     {
         for (int i = 0; i < 4; i++)
         {
-            snakeBody[i, 0] = snakeBody[i + 1, 0];
-            snakeBody[i, 1] = snakeBody[i + 1, 1];
+            _snakeBody[i, 0] = _snakeBody[i + 1, 0];
+            _snakeBody[i, 1] = _snakeBody[i + 1, 1];
         }
-        snakeBody[4, 0] += direction switch
+        _snakeBody[4, 0] += direction switch
         {
             2 => 1,
             4 => -1,
             _ => 0
         };
-        snakeBody[4, 1] += direction switch
+        _snakeBody[4, 1] += direction switch
         {
             1 => -1,
             3 => 1,
             _ => 0
         };
-
-        return snakeBody;
     }
     
     /// <summary>
@@ -121,7 +115,7 @@ public static class Assignment2_2
 
         if (state is 0)
         {
-            snakeBody = new int[5,2]
+            _snakeBody = new[,]
             {
                 { 38, 15 },
                 { 39, 15 },
@@ -133,7 +127,7 @@ public static class Assignment2_2
             Console.Clear();
         for (int i = 0; i < 5; i++)
         {
-            Console.SetCursorPosition(snakeBody[i, 0], snakeBody[i, 1]);
+            Console.SetCursorPosition(_snakeBody[i, 0], _snakeBody[i, 1]);
             Console.Write(i is 4 ? "0" : "*");
         }
     }
