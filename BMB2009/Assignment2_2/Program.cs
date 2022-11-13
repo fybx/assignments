@@ -17,33 +17,24 @@ public static class Assignment2_2
     ///    bigger  0 game is started, every keypress calculates collisions then redraws scene if no collision is made
     ///    smaller 0 game is lost, ask for spesific keypress to restart, if pressed set state to 0
     /// </summary>
-    private static int gameState;
+    private static int gameState = 1;
 
     /// <summary>
     /// Field snakeBody gives coordinates of snake body parts with the last (4th) element being the head.
     /// </summary>
-    private static int[,] snakeBody = new int[5,2]
-    {
-        { 38, 15 },
-        { 39, 15 },
-        { 40, 15 },
-        { 41, 15 },
-        { 42, 15 }
-    };
+    private static int[,] snakeBody;
     
     public static void Main(string[] args)
     {
-        bool gameGoesOn = true;
-        
-        while (gameGoesOn)
+        ConsoleKeyInfo key;
+        start:
+        gameState = 1;
+        Redraw(0);
+        while (gameState is 1)
         {
-            // GetArrowKeypress
-            // CalculateNewState
-            // CheckCollision
-            // Redraw
-            Redraw(0);    
-            ConsoleKeyInfo key = Console.ReadKey();
-            CalculateSnakeBody(key.Key switch
+            Redraw(gameState, gameState is not 0);
+            key = Console.ReadKey();
+            int decision = key.Key switch
             {
                 ConsoleKey.UpArrow => 1,
                 ConsoleKey.RightArrow => 2,
@@ -51,9 +42,25 @@ public static class Assignment2_2
                 ConsoleKey.LeftArrow => 4,
                 ConsoleKey.Q => 5,
                 _ => 6
-            });
+            };
+            if (decision is 5)
+                gameState = -2;
+            CalculateSnakeBody(decision);
             if (CheckCollision())
-                gameGoesOn = false;
+                gameState = -1;
+            gameState = gameState > -1 ? 1 : gameState;
+        }
+        
+        if (gameState is -1)
+        {
+            Console.Clear();
+            Console.WriteLine("Kaybettiniz. Tekrar oynamak için \"r\", çıkmak için \"q\" tuşuna basınız...");
+            do
+            {
+                key = Console.ReadKey();
+                if (key.Key is ConsoleKey.R)
+                    goto start;
+            } while (key.Key is not ConsoleKey.Q);
         }
     }
 
@@ -111,8 +118,19 @@ public static class Assignment2_2
     {
         if (!draw)
             return;
-        
-        Console.Clear();
+
+        if (state is 0)
+        {
+            snakeBody = new int[5,2]
+            {
+                { 38, 15 },
+                { 39, 15 },
+                { 40, 15 },
+                { 41, 15 },
+                { 42, 15 }
+            };
+        } else
+            Console.Clear();
         for (int i = 0; i < 5; i++)
         {
             Console.SetCursorPosition(snakeBody[i, 0], snakeBody[i, 1]);
