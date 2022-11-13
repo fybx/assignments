@@ -92,6 +92,8 @@ public static class Assignment2_2
     /// <returns>Returns updated coordinate array of body.</returns>
     private static void CalculateSnakeBody(int direction)
     {
+        if (direction is < 0 or > 4)
+            return;
         for (int i = 0; i < 4; i++)
         {
             _snakeBody[i, 0] = _snakeBody[i + 1, 0];
