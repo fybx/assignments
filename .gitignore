@@ -1,5 +1,6 @@
 .idea/
 obj/
 bin/
+__pycache__/
 *.cache
 *.sln.DotSettings.user
