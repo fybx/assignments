@@ -7,6 +7,17 @@
 import random
 
 
+def sayi_bol(sayi: int):
+    """
+    Aldığı sayıyı rakam rakam liste haline getirir.
+    """
+    rakamlar = []
+    while sayi > 0:
+        rakamlar.insert(0, sayi % 10)
+        sayi //= 10
+    return rakamlar
+
+
 def sayi_kiyasla(sayi: int, tahmin: int):
     """
     Asıl sayı ile tahmini kıyaslar ve ipucu string'i üretir
@@ -14,6 +25,28 @@ def sayi_kiyasla(sayi: int, tahmin: int):
     # Sayı + pozisyon eşleşti => *
     # Sayı eşleşti => +
     # Eşleşme yok => bilgi yok
+    ipucu = ""
+
+    # Önce sayıların eşleşmesini kontrol et,
+    # eşleşen sayı varsa da pozisyonu kontrol et
+
+    # Sayıların incelenmesinde iki yok izlenebilir:
+    # 1. Sayılar string'e çevrilerek kıyaslanır
+    # 2. Sayılar basamak basamak listeye bölünür ve kıyaslanır
+    # ben 2. seçeneği tercih edeceğim
+    sayi_l = sayi_bol(sayi)
+    tahm_l = sayi_bol(tahmin)
+
+    indis = 0
+    for rakam in tahm_l:
+        if rakam in sayi_l:
+            if rakam == sayi_l[indis]:
+                ipucu += "*"
+                indis += 1
+                continue
+            ipucu += "+"
+        indis += 1
+    return ipucu
 
 
 def sayi_uret():
@@ -25,10 +58,11 @@ def sayi_uret():
 
 
 def main():
-    # sayi_uret()
-    # oyuncudan tahmin al
-    # tahmin vs sayi kıyasla
-    # sonuca göre oyunu bitir veya devam et
+    # Oyun mantığı:
+    # 1. sayi_uret()
+    # 2. oyuncudan tahmin al
+    # 3. tahmin ve sayi'yi kıyasla
+    # 4. sonuca göre oyunu bitir veya devam et
     deneme = 0
     sayi = sayi_uret()
     oyun = True
@@ -37,12 +71,15 @@ def main():
         ipucu = sayi_kiyasla(sayi, tahmin)
         if ipucu == "****":
             # Tümü eşleşti & oyun kazanılır
-            oyun = False
             print(deneme, "denemede kazandınız.")
-        else:
+            break
+        elif deneme != 15:
             # Oyuna devam
-            print(ipucu)
+            print("İpucu:", f"\"{ipucu}\".", 15 - deneme, "hakkınız kaldı.")
             deneme += 1
+            continue
+        print("Kaybettiniz.")
+        oyun = False
 
 
 if __name__ == "__main__":
