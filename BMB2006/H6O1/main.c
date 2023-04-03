@@ -3,6 +3,7 @@
  *      032190002
  */
 #include <stdio.h>
+#include <stdlib.h>
 
 struct dugum {
     int             deger;
@@ -22,6 +23,8 @@ struct kuyruk {
 };
 typedef struct kuyruk Kuyruk;
 
+Dugum* dugumYap(int);
+
 void tik(Yigin*, int);
 int al(Yigin*);
 
@@ -31,4 +34,11 @@ int siradanAl(Kuyruk*);
 int main() {
     printf("Hello, World!\n");
     return 0;
+}
+
+Dugum* dugumYap(int deger) {
+    Dugum* d    = (Dugum*)calloc(1, sizeof(Dugum));
+    d->deger    = deger;
+    d->sonraki  = NULL;
+    return d;
 }
