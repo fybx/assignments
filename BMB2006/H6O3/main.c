@@ -2,6 +2,7 @@
  *          Ferit Yiğit BALABAN <fybalaban@fybx.dev>
  *          032190002
  */
+#include <stdlib.h>
 
 
 struct dugum {
@@ -25,3 +26,15 @@ int kuyrukBos(OKuyruk*);
 void elemanEkle(OKuyruk*, int, int);
 int elemanCikart(OKuyruk*);
 void kuyrukListele(OKuyruk*);
+
+int main() {
+    return 0;
+}
+
+Dugum* yeniDugum(int oncelik, int deger) {
+    Dugum* d    = (Dugum*)calloc(1, sizeof(Dugum));
+    d->oncelik  = oncelik;
+    d->deger    = deger;
+    d->sonraki  = NULL;
+    return d;
+}
