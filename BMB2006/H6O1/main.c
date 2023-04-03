@@ -22,6 +22,12 @@ struct kuyruk {
 };
 typedef struct kuyruk Kuyruk;
 
+void tik(Yigin*, int);
+int al(Yigin*);
+
+void sirayaKoy(Kuyruk*, int);
+int siradanAl(Kuyruk*);
+
 int main() {
     printf("Hello, World!\n");
     return 0;
