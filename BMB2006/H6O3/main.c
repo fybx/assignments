@@ -14,7 +14,7 @@ typedef struct dugum Dugum;
 
 struct oncelikliKuyruk {
     int uzunluk;
-    struct oncelikliKuyruk* bas;
+    Dugum* bas;
 };
 typedef struct oncelikliKuyruk OKuyruk;
 
