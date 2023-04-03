@@ -69,3 +69,14 @@ void tik(Yigin* yigina, int bunu) {
         yigina->bas = yeni;
     }
 }
+
+int al (Yigin* yigindan) {
+    if ((yigindan->bas)) {
+        /* yığının başı varmış, alma yapılabilir */
+        int deger = yigindan->bas->deger;
+        Dugum* kopartici = yigindan->bas;
+        yigindan->bas = yigindan->bas->sonraki;
+        free(kopartici);
+        return deger;
+    }
+}
