@@ -4,3 +4,4 @@ bin/
 __pycache__/
 *.cache
 *.sln.DotSettings.user
+cmake-build-debug/
