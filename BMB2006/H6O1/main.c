@@ -58,3 +58,14 @@ Kuyruk* kuyrukYap() {
     k->uzunluk  = 0;
     return k;
 }
+
+void tik(Yigin* yigina, int bunu) {
+    Dugum* yeni = dugumYap(bunu);
+    if (!(yigina->bas))
+        yigina->bas = yeni;
+    else {
+        /* Yığının başı varmış, başın soluna tak */
+        yeni->sonraki = yigina->bas;
+        yigina->bas = yeni;
+    }
+}
