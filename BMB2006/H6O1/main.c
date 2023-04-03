@@ -25,9 +25,11 @@ typedef struct kuyruk Kuyruk;
 
 Dugum* dugumYap(int);
 
+Yigin* yiginYap();
 void tik(Yigin*, int);
 int al(Yigin*);
 
+Kuyruk* kuyrukYap();
 void sirayaKoy(Kuyruk*, int);
 int siradanAl(Kuyruk*);
 
@@ -41,4 +43,18 @@ Dugum* dugumYap(int deger) {
     d->deger    = deger;
     d->sonraki  = NULL;
     return d;
+}
+
+Yigin* yiginYap() {
+    Yigin* y    = (Yigin*)calloc(1, sizeof(Yigin));
+    y->bas      = NULL;
+    y->uzunluk  = 0;
+    return y;
+}
+
+Kuyruk* kuyrukYap() {
+    Kuyruk* k   = (Kuyruk*)calloc(1, sizeof(Kuyruk));
+    k->bas      = NULL;
+    k->uzunluk  = 0;
+    return k;
 }
