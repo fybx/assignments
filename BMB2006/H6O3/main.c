@@ -3,7 +3,7 @@
  *          032190002
  */
 #include <stdlib.h>
-
+#include <stdio.h>
 
 struct dugum {
     int oncelik;
@@ -74,4 +74,16 @@ int elemanCikart(OKuyruk* kuyruk) {
     kuyruk->bas = kuyruk->bas->sonraki;
     free(bas);
     return eleman;
+}
+
+void kuyrukListele(OKuyruk* sorgu) {
+    Dugum* bas = sorgu->bas;
+    while(bas) {
+        if (bas->sonraki)
+            printf("[%d]->", bas->deger);
+        else
+            printf("[%d].", bas->deger);
+        bas = bas->sonraki;
+    }
+    printf("\n");
 }
