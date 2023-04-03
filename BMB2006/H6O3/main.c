@@ -66,12 +66,14 @@ void elemanEkle(OKuyruk* kuyruk, int oncelik, int deger) {
         yeni->sonraki = bas->sonraki;
         bas->sonraki = yeni; 
     }
+    kuyruk->uzunluk++;
 }
 
 int elemanCikart(OKuyruk* kuyruk) {
     Dugum* bas  = kuyruk->bas;
     int eleman  = bas->deger;
     kuyruk->bas = kuyruk->bas->sonraki;
+    kuyruk->uzunluk--;
     free(bas);
     return eleman;
 }
