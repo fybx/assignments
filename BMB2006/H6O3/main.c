@@ -51,3 +51,19 @@ int kuyrukBos(OKuyruk* sorgu) {
     /* https://stackoverflow.com/a/3825704 */
     return (!sorgu) ? -1 : sorgu->uzunluk;
 }
+
+void elemanEkle(OKuyruk* kuyruk, int oncelik, int deger) {
+    Dugum* bas  = kuyruk->bas;
+    Dugum* yeni = yeniDugum(oncelik, deger);
+    if (!bas) {
+        kuyruk->bas = yeni;
+    } else if (oncelik > bas->oncelik) {
+        yeni->sonraki = kuyruk->bas;
+        kuyruk->bas = yeni;
+    } else {
+        while(bas->sonraki && oncelik >= bas->sonraki->oncelik)
+            bas = bas->sonraki;
+        yeni->sonraki = bas->sonraki;
+        bas->sonraki = yeni; 
+    }
+}
