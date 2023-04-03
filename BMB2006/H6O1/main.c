@@ -33,8 +33,16 @@ Kuyruk* kuyrukYap();
 void sirayaKoy(Kuyruk*, int);
 int siradanAl(Kuyruk*);
 
+int palindrom(const char*);
+
 int main() {
-    printf("Hello, World!\n");
+    char str[11];
+    printf("(maks. 10 harf) Kelime girin: ");
+    scanf("%s", str);
+    if (palindrom(str))
+        printf("Kelime %s palindrom.\n", str);
+    else
+        printf("Kelime %s palindrom degil.\n", str);
     return 0;
 }
 
@@ -68,6 +76,7 @@ void tik(Yigin* yigina, int bunu) {
         yeni->sonraki = yigina->bas;
         yigina->bas = yeni;
     }
+    yigina->uzunluk++;
 }
 
 int al (Yigin* yigindan) {
@@ -77,6 +86,53 @@ int al (Yigin* yigindan) {
         Dugum* kopartici = yigindan->bas;
         yigindan->bas = yigindan->bas->sonraki;
         free(kopartici);
+        yigindan->uzunluk--;
         return deger;
     }
+}
+
+void sirayaKoy(Kuyruk* kuyruk, int eleman) {
+    Dugum* yeni = dugumYap(eleman);
+    Dugum* uc   = kuyruk->bas;
+    if (!(kuyruk->bas)) {
+        /* kuyruğun başı yok => ilk elemanı ekliyoruz */
+        kuyruk->bas = yeni;
+    } else {
+        /* kuyruğun başı var => en sona ekliyoruz */
+        while(uc && uc->sonraki)
+            uc = uc->sonraki;
+        uc->sonraki = yeni;
+    }
+    kuyruk->uzunluk++;
+}
+
+int siradanAl(Kuyruk* kuyruk) {
+    int deger;
+    Dugum* kopartici = kuyruk->bas;
+    if ((kuyruk->bas)) {
+        deger = kuyruk->bas->deger;
+        kuyruk->bas = kuyruk->bas->sonraki;
+        free(kopartici);
+        kuyruk->uzunluk--;
+        return deger;
+    }
+}
+
+int palindrom(const char* kelime) {
+    int u;
+    int i = 0;
+    Kuyruk* k = kuyrukYap();
+    Yigin*  y = yiginYap();
+
+    while (*(kelime + i)) {
+        sirayaKoy(k, *(kelime + i));
+        tik(y, *(kelime + i));
+        i++;
+    }
+    u = k->uzunluk;
+    while (k->uzunluk >= u / 2) {
+        if (al(y) != siradanAl(k))
+            return 0;
+    }
+    return 1;
 }
