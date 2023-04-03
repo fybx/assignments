@@ -13,6 +13,7 @@ struct dugum {
 typedef struct dugum Dugum;
 
 struct oncelikliKuyruk {
+    int uzunluk;
     struct oncelikliKuyruk* bas;
 };
 typedef struct oncelikliKuyruk OKuyruk;
@@ -42,5 +43,11 @@ Dugum* yeniDugum(int oncelik, int deger) {
 OKuyruk* yeniKuyruk() {
     OKuyruk* k  = (OKuyruk*)calloc(1, sizeof(OKuyruk));
     k->bas      = NULL;
+    k->uzunluk  = 0;
     return k;
+}
+
+int kuyrukBos(OKuyruk* sorgu) {
+    /* https://stackoverflow.com/a/3825704 */
+    return (!sorgu) ? -1 : sorgu->uzunluk;
 }
