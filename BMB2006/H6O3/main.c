@@ -29,6 +29,24 @@ int elemanCikart(OKuyruk*);
 void kuyrukListele(OKuyruk*);
 
 int main() {
+    /* Hastaneye gelenlerin yaşlarına göre önceliklendirilmesi */
+    /*  0-10 & 60-70: 1 */
+    /* 10-20 & 50-60: 2 */
+    /* 20-30 & 40-50: 3 */
+    /*         30-40: 4 */
+    OKuyruk* hastalar = yeniKuyruk();
+    elemanEkle(hastalar, 4, 33);
+    elemanEkle(hastalar, 3, 25);
+    elemanEkle(hastalar, 3, 22);
+    elemanEkle(hastalar, 3, 28);
+    elemanEkle(hastalar, 2, 52);
+    elemanEkle(hastalar, 1, 3);
+    printf("Hastalar:\n");
+    kuyrukListele(hastalar);
+    printf("En öncelikli ile ilgilen\n");
+    printf("%d yaşındaki hastaya baktık.\n", elemanCikart(hastalar));
+    printf("Sırada kalanlar:\n");
+    kuyrukListele(hastalar);
     return 0;
 }
 
@@ -53,18 +71,18 @@ int kuyrukBos(OKuyruk* sorgu) {
 }
 
 void elemanEkle(OKuyruk* kuyruk, int oncelik, int deger) {
-    Dugum* bas  = kuyruk->bas;
+    Dugum* uc   = kuyruk->bas;
     Dugum* yeni = yeniDugum(oncelik, deger);
-    if (!bas) {
+    if (!(kuyruk->bas)) {
         kuyruk->bas = yeni;
-    } else if (oncelik > bas->oncelik) {
+    } else if (oncelik < kuyruk->bas->oncelik) {
         yeni->sonraki = kuyruk->bas;
         kuyruk->bas = yeni;
     } else {
-        while(bas->sonraki && oncelik >= bas->sonraki->oncelik)
-            bas = bas->sonraki;
-        yeni->sonraki = bas->sonraki;
-        bas->sonraki = yeni; 
+        while(uc->sonraki && oncelik >= uc->sonraki->oncelik)
+            uc = uc->sonraki;
+        yeni->sonraki = uc->sonraki;
+        uc->sonraki = yeni; 
     }
     kuyruk->uzunluk++;
 }
