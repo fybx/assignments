@@ -38,3 +38,9 @@ Dugum* yeniDugum(int oncelik, int deger) {
     d->sonraki  = NULL;
     return d;
 }
+
+OKuyruk* yeniKuyruk() {
+    OKuyruk* k  = (OKuyruk*)calloc(1, sizeof(OKuyruk));
+    k->bas      = NULL;
+    return k;
+}
