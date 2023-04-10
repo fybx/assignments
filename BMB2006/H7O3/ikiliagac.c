@@ -27,7 +27,23 @@ IkiliDugum* ara_iteratif(IkiliAgac* agac, int deger) {
             gezgin = gezgin->sag;
         }
     }
-    
+
     return NULL;
 }
 
+IkiliDugum* ara_rekursif_base(IkiliDugum* dugum, int deger) {
+    if (!dugum)
+        return NULL;
+    if (dugum->deger == deger)
+        return dugum;
+
+    if (dugum->deger > deger) {
+        return ara_rekursif_base(dugum->sol, deger);
+    } else {
+        return ara_rekursif_base(dugum->sag, deger);
+    }
+}
+
+IkiliDugum* ara_rekursif(IkiliAgac* agac, int deger) {
+    return ara_rekursif_base(agac->kok, deger);
+}
