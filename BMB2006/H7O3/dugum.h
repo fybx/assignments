@@ -16,5 +16,12 @@ struct dugum {
 };
 typedef struct dugum Dugum;
 
+struct ikili_dugum {
+    int             deger;
+    struct dugum*   sag;
+    struct dugum*   sol;
+};
+typedef struct ikili_dugum IkiliDugum;
+
 Dugum* yeni_dugum(int);
 int dugum_guncelle(Dugum*, int);
