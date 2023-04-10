@@ -18,3 +18,5 @@ struct agac {
 typedef struct agac IkiliAgac;
 
 IkiliAgac* yeni_ikiliagac();
+IkiliDugum* ara_iteratif(IkiliAgac*, int);
+IkiliDugum* ara_rekursif();
