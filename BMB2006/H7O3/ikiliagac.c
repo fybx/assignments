@@ -27,4 +27,7 @@ IkiliDugum* ara_iteratif(IkiliAgac* agac, int deger) {
             gezgin = gezgin->sag;
         }
     }
+    
+    return NULL;
 }
+
