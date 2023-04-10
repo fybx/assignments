@@ -25,3 +25,6 @@ typedef struct ikili_dugum IkiliDugum;
 
 Dugum* yeni_dugum(int);
 int dugum_guncelle(Dugum*, int);
+
+IkiliDugum* yeni_ikilidugum(int);
+int ikilidugum_guncelle(IkiliDugum*, int);
