@@ -65,3 +65,27 @@ IkiliDugum* ara_max_iteratif(IkiliAgac* agac) {
 
     return gezgin;
 }
+
+int ikiliagac_ekle(IkiliAgac* agac, int deger) {
+    IkiliDugum* d = yeni_ikilidugum(deger);
+    IkiliDugum* g;
+
+    if (!agac)
+        return -1;
+    if (!(agac->kok)) {
+        agac->kok = d;
+        return 0;
+    }
+    g = agac->kok;
+    while(g) {
+        if (deger == g->deger)
+            return -1;
+        else if (deger < g->deger) {
+            if (g->sol)
+                g = g->sol;
+            else
+                g->sol = d;
+        }
+    }
+
+}

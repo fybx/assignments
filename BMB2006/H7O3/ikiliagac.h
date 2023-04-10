@@ -22,3 +22,5 @@ IkiliDugum* ara_iteratif(IkiliAgac*, int);
 IkiliDugum* ara_rekursif(IkiliAgac*, int);
 IkiliDugum* ara_min_iteratif(IkiliAgac*);
 IkiliDugum* ara_max_iteratif(IkiliAgac*);
+
+int ikiliagac_ekle(IkiliAgac*, int);
