@@ -17,9 +17,9 @@ struct dugum {
 typedef struct dugum Dugum;
 
 struct ikili_dugum {
-    int             deger;
-    struct dugum*   sag;
-    struct dugum*   sol;
+    int                     deger;
+    struct ikili_dugum*     sag;
+    struct ikili_dugum*     sol;
 };
 typedef struct ikili_dugum IkiliDugum;
 
