@@ -1,6 +1,9 @@
-//
-// Created by ferit on 10/04/23.
-//
+/*
+ *          Ferit Yiğit BALABAN <fybalaban@fybx.dev>
+ *          032190002
+ *
+ *          ikiliagac.h
+ */
 
 #include "dugum.h"
 
@@ -10,7 +13,7 @@
 #endif //H7O3_IKILIAGAC_H
 
 struct agac {
-    Dugum* kok;
+    IkiliDugum* kok;
 };
 typedef struct agac IkiliAgac;
 
