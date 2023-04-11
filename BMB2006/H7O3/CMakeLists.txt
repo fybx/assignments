@@ -7,4 +7,4 @@ include_directories(.)
 
 add_executable(H7O3
         dugum.c
-        dugum.h ikiliagac.c ikiliagac.h)
+        dugum.h ikiliagac.c ikiliagac.h tests.c main.c)
