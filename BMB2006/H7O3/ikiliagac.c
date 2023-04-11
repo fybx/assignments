@@ -6,6 +6,7 @@
  */
 
 #include "stdlib.h"
+#include "stdio.h"
 
 #include "ikiliagac.h"
 
@@ -99,4 +100,44 @@ int ikiliagac_ekle(IkiliAgac* agac, int deger) {
             }
         }
     }
+    return 0;
+}
+
+void ikiliagac_dolas_inorder_base(IkiliDugum* dugum) {
+    if (!dugum)
+        return;
+
+    ikiliagac_dolas_inorder_base(dugum->sol);
+    printf("%d ", dugum->deger);
+    ikiliagac_dolas_inorder_base(dugum->sag);
+}
+
+void ikiliagac_dolas_inorder(IkiliAgac* agac) {
+    ikiliagac_dolas_inorder_base(agac->kok);
+}
+
+void ikiliagac_dolas_preorder_base(IkiliDugum* dugum) {
+    if (!dugum)
+        return;
+
+    printf("%d ", dugum->deger);
+    ikiliagac_dolas_preorder_base(dugum->sol);
+    ikiliagac_dolas_preorder_base(dugum->sag);
+}
+
+void ikiliagac_dolas_preorder(IkiliAgac* agac) {
+    ikiliagac_dolas_preorder_base(agac->kok);
+}
+
+void ikiliagac_dolas_postorder_base(IkiliDugum* dugum) {
+    if (!dugum)
+        return;
+
+    ikiliagac_dolas_postorder_base(dugum->sol);
+    ikiliagac_dolas_postorder_base(dugum->sag);
+    printf("%d ", dugum->deger);
+}
+
+void ikiliagac_dolas_postorder(IkiliAgac* agac) {
+    ikiliagac_dolas_postorder_base(agac->kok);
 }

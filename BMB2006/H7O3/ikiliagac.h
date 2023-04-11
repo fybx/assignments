@@ -24,3 +24,6 @@ IkiliDugum* ara_min_iteratif(IkiliAgac*);
 IkiliDugum* ara_max_iteratif(IkiliAgac*);
 
 int ikiliagac_ekle(IkiliAgac*, int);
+void ikiliagac_dolas_inorder(IkiliAgac*);
+void ikiliagac_dolas_preorder(IkiliAgac*);
+void ikiliagac_dolas_postorder(IkiliAgac*);
