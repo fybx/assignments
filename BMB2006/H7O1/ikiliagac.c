@@ -170,3 +170,26 @@ int ikiliagac_dogrula(IkiliAgac* agac, int derinlik) {
     }
     return 1;
 }
+
+void ikiliagac_ciz_base(IkiliDugum* dugum, int seviye) {
+    int i = 0;
+    if (!dugum)
+        return;
+
+    ikiliagac_ciz_base(dugum->sag, seviye + 1);
+
+    for (; i < seviye; i++)
+        printf("   ");
+    printf("%d\n", dugum->deger);
+
+    ikiliagac_ciz_base(dugum->sol, seviye + 1);
+}
+
+void ikiliagac_ciz(IkiliAgac* agac) {
+    if (!agac || !(agac->kok)) {
+        printf("Ağaç boş :(\n");
+        return;
+    }
+
+    ikiliagac_ciz_base(agac->kok, 0);
+}

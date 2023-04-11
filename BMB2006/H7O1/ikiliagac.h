@@ -29,3 +29,4 @@ void ikiliagac_dolas_preorder(IkiliAgac*);
 void ikiliagac_dolas_postorder(IkiliAgac*);
 
 int ikiliagac_dogrula(IkiliAgac*, int);
+void ikiliagac_ciz(IkiliAgac*);
