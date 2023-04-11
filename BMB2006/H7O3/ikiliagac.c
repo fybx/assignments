@@ -77,15 +77,26 @@ int ikiliagac_ekle(IkiliAgac* agac, int deger) {
         return 0;
     }
     g = agac->kok;
-    while(g) {
-        if (deger == g->deger)
+    while (g) {
+        if (deger == g->deger) {
+            free(d);
             return -1;
+        }
         else if (deger < g->deger) {
             if (g->sol)
                 g = g->sol;
-            else
+            else {
                 g->sol = d;
+                return 0;
+            }
+        }
+        else {
+            if (g->sag)
+                g = g->sag;
+            else {
+                g->sag = d;
+                return 0;
+            }
         }
     }
-
 }
