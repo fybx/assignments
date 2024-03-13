@@ -7,7 +7,6 @@ from os import fork # fork fonksiyonu, os modülünden import edilir
 from os import getpid # getpid fonksiyonu, os modülünden import edilir
 
 def main():
-    
     print(f"process id: {getpid()}") # çalışan process'in id'si yazdırılır
     forkResult = fork() # process'in kopyası oluşturulur ve orijinal process'e kopyanın id'si, kopyaya 0 değeri döndürülür
     print(f"process id: {getpid()} - result: {forkResult}") # çalışan process'in id'si ve fork fonksiyonunun dönüş değeri yazdırılır
