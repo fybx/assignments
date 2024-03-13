@@ -6,13 +6,12 @@ int main ( void )  {
 
 	printf("(%i) Parent does something...\n", getpid());
 
-	if(fork())  {  // Parent 
+	if(fork())  {
 		printf("(%i) Parent do completely different stuff\n",getpid());
-	} else {       // Child
+	} else {
 		printf("(%i) Child can do some stuff\n",getpid());
 	}
 
 
 	exit(0);
 }
-

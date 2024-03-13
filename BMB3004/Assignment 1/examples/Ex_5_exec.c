@@ -6,9 +6,9 @@ int main ( void )  {
 
 	printf("Parent does stuff and then calls fork...\n");
 	
-	if(fork())  { // Parent 
+	if(fork())  {
 		printf("... parent do something completely different\n");
-	} else  {     // Child
+	} else  {
 		printf("Child runs an executable...\n");
 		execl("/bin/ls","/bin/ls","-l","/etc/apache2/conf.d/",NULL);
 	}
