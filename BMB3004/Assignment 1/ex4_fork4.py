@@ -3,7 +3,7 @@
 #       032190002
 #
 
-from os import fork, getpid # fork fonksiyonu, os modülünden import edilir
+from os import fork # fork fonksiyonu, os modülünden import edilir
 
 def main():
     if fork() != 0: # process'i forkla (fork1)
