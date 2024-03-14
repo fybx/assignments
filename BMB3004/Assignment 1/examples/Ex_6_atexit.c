@@ -6,10 +6,10 @@ void parentCleaner ( void );
 
 int main ( void )  {
 
-	if(fork())  { // parent process
+	if(fork())  { 
 		atexit(parentCleaner);
 		printf("this is parent %i\n",getpid());
-	} else  {     // child process
+	} else  {
 		printf("this is child %i\n",getpid());
 	}
 	exit(0);

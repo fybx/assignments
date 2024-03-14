@@ -14,13 +14,13 @@ int main ( void )  {
 
 	for (i = 0; i < numOfChilds; i++)  {
 		if ((pid[i] = fork()) == 0)  {
-       			exit(100+i);            // create & exit child
+       			exit(100+i);
 		}
 	}
 
 	for (i = 0; i < numOfChilds+1; i++) {
-   		wpid = wait(&child_status);     // wait for child 
-   		if (WIFEXITED(child_status))  { // check exit status
+   		wpid = wait(&child_status);
+   		if (WIFEXITED(child_status))  {
        			printf("Child %d terminated with exit status %d\n",wpid, WEXITSTATUS(child_status));
 		} else {
      			printf("Child %d terminate abnormally\n", wpid);
